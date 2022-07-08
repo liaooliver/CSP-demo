@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <input type="text" name="text1" id="Input">
+  <button id="Button">Save</button>
+  Hello, <span id="OutPut"></span>
+  <button id="fetch">fetch</button>
+  <div id="fetchdata"></div>
+  <script>
+    const Input = document.querySelector("#Input");
+    const Button = document.querySelector("#Button");
+    const OutPut = document.querySelector("#OutPut");
+    Button.addEventListener('click', () => {
+      console.log(Input.value)
+      OutPut.innerHTML = Input.value;
+    })
+
+    const fetchBtn = document.querySelector('#fetch')
+    fetchBtn.addEventListener('click', () => {
+      fetch('/script')
+      .then(function(response) {
+        return response.json();
+      })
+      .then(function(myJson) {
+        console.log(myJson);
+      });
+    })
+  </script>
+</body>
+
+</html>
