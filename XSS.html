@@ -9,30 +9,16 @@
 </head>
 
 <body>
-  <input type="text" name="text1" id="Input">
-  <button id="Button">Save</button>
-  Hello, <span id="OutPut"></span>
-  <button id="fetch">fetch</button>
-  <div id="fetchdata"></div>
+  <!-- 反射型 XSS (Reflected) -->
+  <!-- <h2 id="title"></h2>
   <script>
-    const Input = document.querySelector("#Input");
-    const Button = document.querySelector("#Button");
-    const OutPut = document.querySelector("#OutPut");
-    Button.addEventListener('click', () => {
-      console.log(Input.value)
-      OutPut.innerHTML = Input.value;
-    })
+    localStorage.setItem('token', 'I\'m Token')
+    const title = document.querySelector('#title')
+    title.innerHTML = (new URL(location).searchParams.get('q'))
+  </script> -->
 
-    const fetchBtn = document.querySelector('#fetch')
-    fetchBtn.addEventListener('click', () => {
-      fetch('/script')
-      .then(function(response) {
-        return response.json();
-      })
-      .then(function(myJson) {
-        console.log(myJson);
-      });
-    })
+  <script>
+    fetch('/getmsg').then(res => res.json()).then(res => console.log(res))
   </script>
 </body>
 

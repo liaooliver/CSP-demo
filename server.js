@@ -11,12 +11,29 @@ const app = express();
 //   next();
 // });
 
+const data = [
+  { msg: "\<\s" + "cript>alert(123)</script>" }
+]
+
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname)));
 
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname + '/index.html'));
 });
+
+app.get('/getmsg', (req, res) => {
+  res.json(data)
+})
+
+app.post('/postmsg', (req, res) => {
+
+  const body = req.body
+  console.log(body)
+  data[0] = body
+
+  res.json({ success: true })
+})
 
 app.get('/script', (req, res)=>{
   res.json({ data: '<script>alert("nodejs")</script>' })
