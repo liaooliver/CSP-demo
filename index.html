@@ -19,19 +19,6 @@
   </head>
   <body>
     <main>
-
-      <div class="box">
-        <input type="text" name="text1" id="Input">
-        <button id="Button">Save</button>
-        Hello, <span id="OutPut"></span>
-      </div>
-
-      <div class="box">
-        <button id="fetch">fetch</button>
-        <div id="fetchdata"></div>
-      </div>
-
-
       <div class="box">
         <div id="vue"></div>
       </div>
@@ -75,26 +62,6 @@
           return createElement('h1', 'Hello World!');
         },
       });
-    </script>
-    <script>
-      const Input = document.querySelector("#Input");
-      const Button = document.querySelector("#Button");
-      const OutPut = document.querySelector("#OutPut");
-      Button.addEventListener('click', () => {
-        OutPut.innerHTML = Input.value;
-      })
-
-      const fetchBtn = document.querySelector('#fetch')
-      const fetchdata = document.querySelector("#fetchdata");
-      fetchBtn.addEventListener('click', () => {
-        fetch('/script')
-        .then(function(response) {
-          return response.json();
-        })
-        .then(function(myJson) {
-          fetchdata.innerHTML = `Hello ${myJson.data}`
-        });
-      })
     </script>
   </body>
 </html>

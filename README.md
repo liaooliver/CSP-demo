@@ -42,10 +42,16 @@ Demo XSS
 
 ## CSP 防護
 
-CSP 是瀏覽器提供網站設定白名單的機制，網站可以告知瀏覽器，該網頁有哪些位置可以連、哪些位置不能連
+### 什麼是 CSP
+
+- 全名: Content Security Policy 內容安全政策
+- CSP 提供一份白名單給瀏覽器，用來告訴瀏覽器有哪些"來源"可以載入到網站內，不在白名單內的"來源"都不能加載到網站內。
+- 簡單來說告知瀏覽器，該網頁有哪些位置可以連、哪些位置不能連
+
+### 好處
 
 - CSP 主要是用來防護減少 XSS 的攻擊
-- 透過設定 CSP 執行有效來源(origin)的 script，避免執行非有效來源的 script
+- 提供額外的安全措施來抵禦代碼注入攻擊，使得攻擊者更難以注入內容
   
 ### 來源(origin)
 
@@ -57,7 +63,6 @@ port
 
 ## CSP 怎麼設定
 
-設定:
 - 後端設定 http-header
   
   以 Node.js 為例
@@ -82,22 +87,42 @@ port
 - object-src 載入非影音標籤物件套用的規則。如：`<object>`、`<embed>` 等。
 - script-src 載入 JavaScript 套用的規則。
 - style-src 載入 Stylesheets (CSS) 套用的規則。
+- report-uri 當瀏覽器發現 CSP 安全性問題時，就會提報錯誤給 report-uri 指定的網址。
 
 ### 指令可設定的參數
 每個 CSP 指令可以限制一個或多個能發出 Request 的位置，設定參數如下：
 
 - '*'
 允許對任何位置發出 Request。
-如：default-src *;，允許載入來自任何地方、任何類型的資源。
+如：`default-src *;`，允許載入來自任何地方、任何類型的資源。
+![image](assets/all.png)
 - 'none'
 不允許對任何位置發出 Request。
-如：media-src 'none';，不允許載入影音標籤。
+如：`media-src 'none'`;，不允許載入影音標籤。
+![image](assets/none.png)
 - 'self'
 只允許同網域的位置發出 Request。
-如：script-src 'self';，只允許載入同網域的 *.js。
+如：`script-src 'self';`，只允許載入同網域的 *.js。
+![image](assets/self.png)
+- 'unsafe-inline'
+允許執行 inline-script ，但不建議開啟此指令，會增加注入攻擊的風險。
+如：`script-src 'unsafe-inline';`
+![image](assets/unsafe-inline.png)
 - URL
 指定允許發出 Request 的位置，可搭配 * 使用。
 如：img-src http://cdn.johnwu.cc https:;，只允許從 http://cdn.johnwu.cc 或其他 HTTPS 的位置載入 *.css。
+![image](assets/url.png)
+
+### 監控違反 CSP 的行為 
+
+啟用 CSP 之後，如果有攻擊者試圖利用 XSS 攻擊，可以開啟 CSP 主動報告機制將違反 CSP 的訊息發佈到指定位置上。
+
+增加額外的標頭來指定 report 的位置
+![image](assets/report.png)
+
+`/__cspreport__` 路由也需要存在於 server 上
+![image](assets/cspreport.png)
+
 
 
 ## Live Demo Time

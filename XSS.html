@@ -1,25 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <meta name="viewport" content="width=device-width" />
+  <title>Clickjacking Sample</title>
+  <style>
+      iframe {
+          width: 98%;
+          height: 75%;
+      }
+
+      .cover {
+          position: absolute;
+          top: 65px;
+          width: 98%;
+          height: 75%;
+          background-color: rgba(255, 0, 0, .3);
+      }
+  </style>
+  <script>
+      var doSomething = function () {
+          alert("你以為你在點誰？");
+      };
+  </script>
 </head>
 
 <body>
-  <!-- 反射型 XSS (Reflected) -->
-  <!-- <h2 id="title"></h2>
-  <script>
-    localStorage.setItem('token', 'I\'m Token')
-    const title = document.querySelector('#title')
-    title.innerHTML = (new URL(location).searchParams.get('q'))
-  </script> -->
-
-  <script>
-    fetch('/getmsg').then(res => res.json()).then(res => console.log(res))
-  </script>
+  <h1>Clickjacking Sample</h1>
+  <div class="cover" onclick="doSomething();"></div>
+  <iframe src="https://ithelp.ithome.com.tw/"></iframe>
 </body>
 
 </html>
