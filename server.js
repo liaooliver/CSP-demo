@@ -12,7 +12,8 @@ app.use(function (req, res, next) {
     'Content-Security-Policy',
     //"default-src 'self'; font-src 'self' https://fonts.gstatic.com; img-src 'self' https://images.unsplash.com; script-src 'self' https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/ ; style-src 'self' https://fonts.googleapis.com https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css; frame-src 'self' https://www.youtube.com https://youtube.com; report-to csp-endpoint; report-uri /__cspreport__;"
     //"default-src 'self'; img-src 'self' https://images.unsplash.com;"
-    "default-src 'self'; script-src 'self' 'unsafe-inline https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/; report-uri /__cspreport__; "
+    //"default-src 'self'; script-src 'self' 'unsafe-inline https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/; report-uri /__cspreport__; "
+    "default-src 'self'; report-uri /__cspreport__"
   );
   next();
 });

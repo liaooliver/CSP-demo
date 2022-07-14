@@ -124,7 +124,17 @@ port
 ![image](assets/cspreport.png)
 
 
+- report-to 指令用於替換 report-uri 指令，但目前瀏覽器的支援度還有待加強
+  
+- 為了確保與未來瀏覽器版本兼容
+  - 建議同時使用 report-to 指令 與 report-uri 指令
 
+## 其他的防禦手段
+
+- 同源政策（same-origin policy）
+  - 規範了哪些資源可以跨源存取，哪些會受到限制。
+
+- 跨來源資源共用（cross-origin-resource-sharing, CORS）
 ## Live Demo Time
 
 https://www.digitalocean.com/community/tutorials/how-to-secure-node-js-applications-with-a-content-security-policy

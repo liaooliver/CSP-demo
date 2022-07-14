@@ -12,6 +12,10 @@
     <button onclick="sendText()">send</button>
 
     <script>
+        localStorage.setItem('token', 'Hello 這裡是 Token')
+        // <img src='#' onerror="alert('XSS 攻擊, 取得 Token 囉!!')" />
+        // <img src='#' onerror="alert('取得 Token 囉!!' + localStorage.getItem('token'))" />
+        // <img src='#' onerror="alert('XSS 攻擊, 取得 Token 囉!!', localStorage.getItem('token'))" />
         function sendText(){
             var textInput = document.getElementById('text').value;
             document.getElementById('show_text').innerHTML = textInput
