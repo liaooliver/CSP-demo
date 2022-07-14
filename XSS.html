@@ -1,31 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta name="viewport" content="width=device-width" />
-  <title>Clickjacking Sample</title>
-  <style>
-      iframe {
-          width: 98%;
-          height: 75%;
-      }
-
-      .cover {
-          position: absolute;
-          top: 65px;
-          width: 98%;
-          height: 75%;
-          background-color: rgba(255, 0, 0, .3);
-      }
-  </style>
-  <script>
-      var doSomething = function () {
-          alert("你以為你在點誰？");
-      };
-  </script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
 </head>
-
 <body>
-  <h1>Clickjacking Sample</h1>
-  <div class="cover" onclick="doSomething();"></div>
-  <iframe src="https://ithelp.ithome.com.tw/"></iframe>
-</body>
+    <h3>Hello!! <span id="show_text"></span></h3>
+    <input type="text" id="text" />
+    <button onclick="sendText()">send</button>
 
+    <script>
+        function sendText(){
+            var textInput = document.getElementById('text').value;
+            document.getElementById('show_text').innerHTML = textInput
+        }
+    </script>
+</body>
 </html>
