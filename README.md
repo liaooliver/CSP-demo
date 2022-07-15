@@ -129,6 +129,12 @@ port
 - 為了確保與未來瀏覽器版本兼容
   - 建議同時使用 report-to 指令 與 report-uri 指令
 
+hash-source​
+
+CSP 2 新增的功能​
+
+Hash 的產生是基於 script 本身，透過 SHA-256、SHA-384、SHA-512 等加密算法產生
+
 ## 其他的防禦手段
 
 - 同源政策（same-origin policy）
